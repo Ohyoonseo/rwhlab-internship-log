@@ -228,7 +228,7 @@ $$\text{Attention}(Q,K,V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$
 
 > **마스킹 적용 예시**: masking 전(unnormalized) 표에는 −∞로 채워진 칸들이 있는데, 이는 "이후 단어"에 해당하는 칸들 — 이전 단어들은 실수 값이 채워지고, 이후 단어들은 전부 −∞로 채워진, 정확히 "하삼각형(lower-triangular)" 모양이 됨. 이 표에 softmax를 (열 단위로) 적용하면, −∞였던 칸은 정확히 0.00이 되고, 나머지 칸들은 그 열 안에서 합이 1이 되는 값으로 재배분됨.
 
-*(참고: 이 부분은 QK 격자 위에 masking(−∞)과 softmax를 적용한 이후 버전에 해당함 — 강의 캡처 중 해당 프레임이 있으면 여기에 삽입. 없으면 위 QK 격자 이미지에 이어지는 개념으로, 텍스트 설명만으로 이해해도 무방함.)*
+![QK 내적 격자 - "masking"](images/8.png)
 
 > **Value 가중합 예시**: 강의의 "a fluffy blue creature..." 예문에서, "creature"의 attention pattern 가중치가 fluffy=0.42, blue=0.58(나머지는 거의 0)이었다면, 최종적으로 더해지는 변화량은 **0.42×(fluffy의 Value 벡터) + 0.58×(blue의 Value 벡터)**로 계산됨. 이렇게 "형용사들의 의미를 실어 나르는 Value"가 가중치대로 섞여서 명사의 벡터를 더 구체적으로 만들어주는 것.
 
